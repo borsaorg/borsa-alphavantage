@@ -17,8 +17,8 @@ This connector is experimental and lightly tested due to API key requirements. M
 
 ```toml
 [dependencies]
-borsa-alphavantage = "0.2.0-alpha.1"
-borsa-core = "0.2.0-alpha.1"
+borsa-alphavantage = "0.1.0"
+borsa-core = "0.1.0"
 ```
 
 ## Usage
