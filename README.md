@@ -8,9 +8,13 @@
 Alpha Vantage connector for the borsa financial data ecosystem.
 
 ## Overview
+
 `borsa-alphavantage` implements the `BorsaConnector` trait using the Alpha Vantage API to provide quotes, historical data, and fundamentals.
 
+This connector is experimental and lightly tested due to API key requirements. Maintenance is best‑effort: I review PRs and may update when time allows, so it may lag behind breaking `borsa` releases. Treat it as a proof of concept and validate for your workloads before relying on it in production.
+
 ## Installation
+
 ```toml
 [dependencies]
 borsa-alphavantage = "0.2.0-alpha.1"
@@ -26,7 +30,9 @@ Refer to the main `borsa` crate for how to register connectors. This crate imple
 > `cargo test --features borsa-alphavantage/test-adapters` whenever you depend on the mocks.
 
 ## Contributing
+
 See [CONTRIBUTING.md](CONTRIBUTING.md). Please also read our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
