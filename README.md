@@ -3,7 +3,7 @@
 [![Crates.io](https://img.shields.io/crates/v/borsa-alphavantage)](https://crates.io/crates/borsa-alphavantage)
 [![Docs.rs](https://docs.rs/borsa-alphavantage/badge.svg)](https://docs.rs/borsa-alphavantage)
 [![Downloads](https://img.shields.io/crates/d/borsa-alphavantage)](https://crates.io/crates/borsa-alphavantage)
-[![License](https://img.shields.io/crates/l/borsa-alphavantage)](LICENSE)
+[![License](https://img.shields.io/crates/l/borsa-alphavantage)](https://crates.io/crates/borsa-alphavantage)
 
 Alpha Vantage connector for the borsa financial data ecosystem.
 
