@@ -1,0 +1,27 @@
+[package]
+name = "borsa-alphavantage"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+authors = ["Giovanni Ramistella <contact@borsa.rs>"]
+description = "Alpha Vantage API connector for the borsa ecosystem."
+readme = "README.md"
+repository = "https://github.com/borsaorg/borsa"
+homepage = "https://github.com/borsaorg/borsa"
+documentation = "https://docs.rs/borsa-alphavantage"
+keywords = ["finance", "alphavantage", "api", "market-data", "stocks", "trading", "financial-data"]
+categories = ["api-bindings", "finance", "web-programming::http-client"]
+
+[features]
+default = []
+test-adapters = []
+
+[dependencies]
+borsa-core = { path = "../borsa-core-workspace/borsa-core" }
+alpha_vantage = "0.11.0"
+async-trait = "0.1"
+thiserror = "2.0.17"
+tokio = { version = "1" }
+chrono = "0.4.42"
+chrono-tz = "0.10"
+reqwest = "0.12.24"
