@@ -2,7 +2,8 @@ use std::sync::Arc;
 
 use async_trait::async_trait;
 use borsa_core::{
-    BorsaError, /*Earnings, EarningsQuarter, EarningsQuarterEps, EarningsYear,*/ HistoryRequest,
+    BorsaError,
+    /*Earnings, EarningsQuarter, EarningsQuarterEps, EarningsYear,*/ HistoryRequest,
     HistoryResponse, Quote, SearchRequest, SearchResult, Symbol,
 };
 use borsa_core::{Currency, Money};

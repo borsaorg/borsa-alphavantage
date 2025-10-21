@@ -4,7 +4,9 @@ use borsa_alphavantage::AvConnector;
 use borsa_core::{AssetKind, HistoryRequest, Instrument, Interval, Range, SearchRequest};
 
 // Bring provider traits into scope for method call syntax
-use borsa_core::connector::{/*EarningsProvider,*/ HistoryProvider, QuoteProvider, SearchProvider};
+use borsa_core::connector::{
+    /*EarningsProvider,*/ HistoryProvider, QuoteProvider, SearchProvider,
+};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
@@ -44,20 +46,28 @@ async fn main() -> Result<(), Box<dyn Error>> {
     let eurusd = Instrument::from_symbol("EUR/USD", AssetKind::Forex)?;
     let fx_hist_req = HistoryRequest::try_from_range(Range::D1, Interval::D1)?;
     let fx_hist = av.history(&eurusd, fx_hist_req).await?;
-    println!("Forex history {}: {} candles", eurusd.symbol(), fx_hist.candles.len());
+    println!(
+        "Forex history {}: {} candles",
+        eurusd.symbol(),
+        fx_hist.candles.len()
+    );
 
     // Premium Endpoints (Requires a Premium API Key)
 
-    // --- History example (AAPL, daily candles) --- 
+    // --- History example (AAPL, daily candles) ---
     println!("--- Premium history example (AAPL, daily candles) ---");
     let hist_req = HistoryRequest::try_from_range(Range::D1, Interval::D1)?;
     let history = av.history(&aapl, hist_req).await?;
-    println!("History {}: {} candles (adjusted={})",
-        aapl.symbol(), history.candles.len(), history.adjusted);
+    println!(
+        "History {}: {} candles (adjusted={})",
+        aapl.symbol(),
+        history.candles.len(),
+        history.adjusted
+    );
     if let Some(last) = history.candles.last() {
         println!("Last close {} at {}", last.close, last.ts);
     }
-    
+
     // Not working as expected, returns an error from the underlying crate.
 
     // --- Earnings example (AAPL) ---
@@ -73,5 +83,3 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     Ok(())
 }
-
-
