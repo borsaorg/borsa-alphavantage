@@ -2,7 +2,7 @@ use std::sync::Arc;
 
 use async_trait::async_trait;
 use borsa_core::{
-    BorsaError, Earnings, EarningsQuarter, EarningsQuarterEps, EarningsYear, HistoryRequest,
+    BorsaError, /*Earnings, EarningsQuarter, EarningsQuarterEps, EarningsYear,*/ HistoryRequest,
     HistoryResponse, Quote, SearchRequest, SearchResult, Symbol,
 };
 use borsa_core::{Currency, Money};
@@ -51,12 +51,15 @@ pub trait AvSearch: Send + Sync {
     async fn search(&self, req: &SearchRequest) -> Result<Vec<SearchResult>, BorsaError>;
 }
 
+/*
 /// Fundamentals adapter for fetching earnings data.
+/// This unfortunately returns an error from the underlying crate, seems to be a bug in the crate.
 #[async_trait]
 pub trait AvEarnings: Send + Sync {
     /// Fetch earnings for the provided symbol.
     async fn earnings(&self, symbol: &str) -> Result<Earnings, BorsaError>;
 }
+*/
 
 /// Production adapter that owns an `alpha_vantage::ApiClient`.
 #[derive(Clone)]
@@ -304,6 +307,7 @@ impl AvSearch for RealAdapter {
     }
 }
 
+/*
 #[async_trait]
 impl AvEarnings for RealAdapter {
     async fn earnings(&self, symbol: &str) -> Result<Earnings, BorsaError> {
@@ -369,6 +373,7 @@ impl AvEarnings for RealAdapter {
         })
     }
 }
+*/
 
 /* -------- Test-only lightweight adapter constructors ------- */
 
@@ -480,6 +485,7 @@ impl dyn AvSearch {
     }
 }
 
+/*
 #[cfg(feature = "test-adapters")]
 impl dyn AvEarnings {
     /// Build an `AvEarnings` from a closure (tests only).
@@ -500,6 +506,7 @@ impl dyn AvEarnings {
         Arc::new(FnEarnings(f))
     }
 }
+*/
 
 /// Helper trait to split a concrete adapter into arc trait objects.
 #[cfg(feature = "test-adapters")]
@@ -520,10 +527,12 @@ pub trait CloneArcAdapters {
     fn clone_arc_search(&self) -> Arc<dyn AvSearch> {
         <dyn AvSearch>::from_fn(|_r| Err(BorsaError::unsupported("search")))
     }
+    /*
     /// Clone as `Arc<dyn AvEarnings>`.
     fn clone_arc_earnings(&self) -> Arc<dyn AvEarnings> {
         <dyn AvEarnings>::from_fn(|_s| Err(BorsaError::unsupported("fundamentals/earnings")))
     }
+    */
 }
 
 #[cfg(feature = "test-adapters")]
@@ -540,8 +549,10 @@ impl CloneArcAdapters for RealAdapter {
     fn clone_arc_search(&self) -> Arc<dyn AvSearch> {
         Arc::new(self.clone()) as Arc<dyn AvSearch>
     }
+    /*
     /// Clone as `Arc<dyn AvEarnings>`.
     fn clone_arc_earnings(&self) -> Arc<dyn AvEarnings> {
         Arc::new(self.clone()) as Arc<dyn AvEarnings>
     }
+    */
 }

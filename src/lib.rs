@@ -13,7 +13,7 @@ use borsa_core::{
     AssetKind, BorsaError, HistoryRequest, HistoryResponse, Instrument, Quote, SearchRequest,
     SearchResponse,
     connector::{
-        BorsaConnector, ConnectorKey, EarningsProvider, HistoryProvider, QuoteProvider,
+        BorsaConnector, ConnectorKey, /*EarningsProvider,*/ HistoryProvider, QuoteProvider,
         SearchProvider,
     },
 };
@@ -24,7 +24,7 @@ mod convert;
 
 #[cfg(feature = "test-adapters")]
 use adapter::CloneArcAdapters;
-use adapter::{AvEarnings, AvHistory, AvQuotes, AvSearch, RealAdapter};
+use adapter::{/*AvEarnings,*/ AvHistory, AvQuotes, AvSearch, RealAdapter};
 
 #[cfg(not(feature = "test-adapters"))]
 type AdapterArc = Arc<RealAdapter>;
@@ -44,17 +44,19 @@ type SearchAdapter = Arc<dyn AvSearch>;
 #[cfg(not(feature = "test-adapters"))]
 type SearchAdapter = AdapterArc;
 
+/*
 #[cfg(feature = "test-adapters")]
 type EarningsAdapter = Arc<dyn AvEarnings>;
 #[cfg(not(feature = "test-adapters"))]
 type EarningsAdapter = AdapterArc;
+*/
 
 /// Public connector implementation backed by Alpha Vantage APIs.
 pub struct AvConnector {
     quotes: QuotesAdapter,
     history: HistoryAdapter,
     search: SearchAdapter,
-    earnings: EarningsAdapter,
+    /* earnings: EarningsAdapter, */
 }
 
 impl AvConnector {
@@ -90,7 +92,7 @@ impl AvConnector {
             quotes: adapter.clone_arc_quotes(),
             history: adapter.clone_arc_history(),
             search: adapter.clone_arc_search(),
-            earnings: adapter.clone_arc_earnings(),
+            /* earnings: adapter.clone_arc_earnings(), */
         }
     }
 
@@ -103,7 +105,7 @@ impl AvConnector {
             quotes: Arc::clone(&shared),
             history: Arc::clone(&shared),
             search: Arc::clone(&shared),
-            earnings: shared,
+            /* earnings: shared, */
         }
     }
 
@@ -247,6 +249,7 @@ impl SearchProvider for AvConnector {
     }
 }
 
+/*
 #[async_trait]
 impl EarningsProvider for AvConnector {
     async fn earnings(&self, instrument: &Instrument) -> Result<borsa_core::Earnings, BorsaError> {
@@ -256,6 +259,7 @@ impl EarningsProvider for AvConnector {
             .map_err(|e| Self::normalize_error(e, &format!("earnings for {}", instrument.symbol())))
     }
 }
+*/
 
 #[async_trait]
 impl BorsaConnector for AvConnector {
@@ -278,9 +282,12 @@ impl BorsaConnector for AvConnector {
     fn as_search_provider(&self) -> Option<&dyn borsa_core::connector::SearchProvider> {
         Some(self as &dyn SearchProvider)
     }
+    // Earnings provider unfortunately returns an error from the underlying crate, doesnt seem to be a bug in the connector implementation.
+    /*
     fn as_earnings_provider(&self) -> Option<&dyn borsa_core::connector::EarningsProvider> {
         Some(self as &dyn EarningsProvider)
     }
+    */
 
     fn supports_kind(&self, kind: AssetKind) -> bool {
         matches!(

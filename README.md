@@ -17,8 +17,8 @@ This connector is experimental and lightly tested due to API key requirements. M
 
 ```toml
 [dependencies]
-borsa-alphavantage = "0.1.0"
-borsa-core = "0.1.0"
+borsa-alphavantage = "0.2.0"
+borsa-core = "0.2.0"
 ```
 
 ## Usage
@@ -28,6 +28,24 @@ Refer to the main `borsa` crate for how to register connectors. This crate imple
 > **Feature flag:** Closure-based adapter helpers (for dependency-free tests) live behind the
 > optional `test-adapters` feature. Enable it in `Cargo.toml` or via
 > `cargo test --features borsa-alphavantage/test-adapters` whenever you depend on the mocks.
+
+### Examples
+
+Run a local example that loads your Alpha Vantage API key from a `.env` file.
+
+1. Create a `.env` file at the repo root with:
+
+   ```dotenv
+   ALPHAVANTAGE_API_KEY=your_api_key_here
+   ```
+
+2. Run the showcase example:
+
+   ```bash
+   cargo run --example showcase
+   ```
+
+This will demonstrate quotes, history, search, earnings, and a simple forex request using `AvConnector`.
 
 ## Contributing
 

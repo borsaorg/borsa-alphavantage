@@ -13,7 +13,7 @@ fn av_connector_advertises_expected_capabilities() {
     assert!(av.as_quote_provider().is_some());
     assert!(av.as_history_provider().is_some());
     assert!(av.as_search_provider().is_some());
-    assert!(av.as_earnings_provider().is_some());
+    assert!(av.as_earnings_provider().is_none());
     assert!(av.as_profile_provider().is_none());
     assert!(av.as_options_expirations_provider().is_none());
     assert!(av.as_option_chain_provider().is_none());

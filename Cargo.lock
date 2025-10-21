@@ -109,6 +109,7 @@ dependencies = [
  "borsa-core",
  "chrono",
  "chrono-tz",
+ "dotenvy",
  "reqwest",
  "thiserror 2.0.17",
  "tokio",
@@ -116,12 +117,11 @@ dependencies = [
 
 [[package]]
 name = "borsa-core"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dbcc044151da51cee52c1ef9380059fcb4e2070c9084446c1d120928596eae03"
+version = "0.2.0"
 dependencies = [
  "async-trait",
  "bitflags",
+ "borsa-types",
  "chrono",
  "chrono-tz",
  "paft",
@@ -129,6 +129,15 @@ dependencies = [
  "serde",
  "thiserror 2.0.17",
  "tokio",
+]
+
+[[package]]
+name = "borsa-types"
+version = "0.2.0"
+dependencies = [
+ "paft",
+ "serde",
+ "thiserror 2.0.17",
 ]
 
 [[package]]
@@ -260,6 +269,12 @@ dependencies = [
  "quote",
  "syn 2.0.106",
 ]
+
+[[package]]
+name = "dotenvy"
+version = "0.15.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1aaf95b3e5c8f23aa320147307562d361db0ae0d51242340f558153b4eb2439b"
 
 [[package]]
 name = "encoding_rs"
@@ -885,9 +900,9 @@ dependencies = [
 
 [[package]]
 name = "paft"
-version = "0.5.1"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a60bb797d77b9fa6869d5b44328d1b6dc2c613177d551239665e36c1f90b36ea"
+checksum = "893af9b9418ce8aada7934de5a62c9f95472f234c1cc97a1b4e7774f097012c2"
 dependencies = [
  "iso_currency",
  "paft-aggregates",
@@ -902,9 +917,9 @@ dependencies = [
 
 [[package]]
 name = "paft-aggregates"
-version = "0.5.1"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d0092c8ad95894ab56d7c8d3134ee2a6690afae7603ac2ff4d7c55fdbcecbc76"
+checksum = "a35dccf852a6d31468706fc468165a10e2ac1a3ced4c1fae4a7a539bc6e1908c"
 dependencies = [
  "chrono",
  "paft-domain",
@@ -915,9 +930,9 @@ dependencies = [
 
 [[package]]
 name = "paft-core"
-version = "0.5.1"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6b808661bea8fe7631a7265f3b94c01ff71e065539018475d988899a8512bff8"
+checksum = "f30fc2e740003fceb3cb43b34843d73709b4713a4a3fab23594433fc61c3ae4a"
 dependencies = [
  "chrono",
  "serde",
@@ -926,9 +941,9 @@ dependencies = [
 
 [[package]]
 name = "paft-domain"
-version = "0.5.1"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f0c3501fad93e205271ac5602a44bab450c5444866a60377b3ce11aa942bf05b"
+checksum = "85626f1f3d0c18da923918b5a40641ca1db28db8dd88a5352df053e3f3f9e7d8"
 dependencies = [
  "chrono",
  "isin",
@@ -941,9 +956,9 @@ dependencies = [
 
 [[package]]
 name = "paft-fundamentals"
-version = "0.5.1"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6355cb66796f0f46c471723ec1f3824b5457eff93d8a9d023e7e5ed23791ec45"
+checksum = "c0bd250eee4bc4c89d8ea7f2bdc8f3969e8e6be0d4e4776c957ef604e98f6bf2"
 dependencies = [
  "chrono",
  "iso_currency",
@@ -957,9 +972,9 @@ dependencies = [
 
 [[package]]
 name = "paft-market"
-version = "0.5.1"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "35d5ec1d7e8be6f35f02115a2d72ae3179f8c42067f672f2722c7f99f60290eb"
+checksum = "c9943ca76d2c7732fca00607ec13ce3b651193c2cc7e7bc7bd6a57fa55343889"
 dependencies = [
  "bitflags",
  "chrono",
@@ -975,9 +990,9 @@ dependencies = [
 
 [[package]]
 name = "paft-money"
-version = "0.5.1"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4da3348544df3c94fa178ef3343efadc468bb51e3cb2c36b53a04ee78f5e04ac"
+checksum = "eb43cda7b1738b058393d3323e6a5c19c09c6d6a9f5c5057c093bd03d1fbe704"
 dependencies = [
  "iso_currency",
  "paft-utils",
@@ -988,9 +1003,9 @@ dependencies = [
 
 [[package]]
 name = "paft-utils"
-version = "0.5.1"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "efaf8e2aaa053ca15011a577061ffb66cd26c91889dbb851eb399461e5c488cc"
+checksum = "0ab33e1459810a6c67d807889ad35ef9957250ff25ddf35cee831d5cf959720d"
 dependencies = [
  "thiserror 2.0.17",
 ]
