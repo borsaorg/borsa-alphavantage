@@ -1,6 +1,6 @@
 [package]
 name = "borsa-alphavantage"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
 license = "MIT"
 authors = ["Giovanni Ramistella <contact@borsa.rs>"]
@@ -17,7 +17,7 @@ default = []
 test-adapters = []
 
 [dependencies]
-borsa-core = { version = "0.1.2" }
+borsa-core = { version = "0.2.0" }
 alpha_vantage = "0.11.0"
 async-trait = "0.1"
 thiserror = "2.0.17"

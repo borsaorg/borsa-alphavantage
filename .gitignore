@@ -1,2 +1,5 @@
 target/
 .env
+
+# Stitch workspace (per-user)
+.stitchworkspace/local/
